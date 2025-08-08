@@ -1,13 +1,32 @@
+
 const express = require('express');
+require('dotenv').config();
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const updatesRouter = require('./routes/updates');
-
+const Sequelize = require('sequelize');
 const PORT = process.env.PORT || 5000;
 
 
 const app = express();
+const sequelize = new Sequelize(process.env.DB_URL, {
+    dialect: 'postgres',
+    dialectOptions: {
+        ssl: {
+            require: true,
+            rejectUnauthorized: false
+        }
+    },
+    logging: false
+});
 
+sequelize.sync()
+    .then(() => {
+        console.log('Database connected successfully');
+    })
+    .catch(err => {
+        console.error('Unable to connect to the database:', err);
+    });
 
 app.use(cors());
 app.use(bodyParser.json());

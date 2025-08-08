@@ -28,9 +28,12 @@ sequelize.sync()
         console.error('Unable to connect to the database:', err);
     });
 
+
 app.use(cors());
 app.use(bodyParser.json());
 app.use('/api/updates', updatesRouter);
+
+app.use(express.static(require('path').join(__dirname, 'public')));
 
 let updates = [
     { id: 1, title: 'Update 1', content: 'Content for update 1' },

@@ -4,7 +4,7 @@ require('dotenv').config();
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const updatesRouter = require('./routes/updates');
-const Sequelize = require('sequelize');
+const { Sequelize, DataTypes } = require('sequelize');
 const PORT = process.env.PORT || 5000;
 
 
@@ -27,6 +27,19 @@ sequelize.sync()
     .catch(err => {
         console.error('Unable to connect to the database:', err);
     });
+
+const post = sequelize.define('post', {
+    title: {
+        type: DataTypes.STRING,
+        allowNull: false
+    },
+    content: {
+        type: DataTypes.TEXT,
+        allowNull: false
+    }
+}, {
+    timestamps: true
+});
 
 
 app.use(cors());
@@ -76,4 +89,15 @@ app.post('/api/updates', (req, res) => {
 
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);
+});
+
+app.post('/api/updates', async (req, res) => {
+    try {
+        const { title, content } = req.body;
+        const newPost = await post.create({ title, content });
+        res.status(201).json(newPost);
+    } catch (error) {
+        console.error('Error creating post:', error);
+        res.status(500).json({ error: 'Internal server error' });
+    }
 });

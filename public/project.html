@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Project</title>
+    <link rel="stylesheet" href="css/project.css">
+</head>
+<body>
+    <button class="back-button" id="backButton">Back to Projects</button>
+    <h1 id="projectTitle">Project Name</h1>
+
+    <div class="cont">
+        
+        <h2>Versions</h2>
+        <ul class="version-list" id="versionList">
+            <!-- Versions will be dynamically added here -->
+        </ul>
+    
+        <div id="versionDetails" style="display: none;">
+            <h3>Version Data</h3>
+            <table class="data-table" id="dataTable">
+                <thead>
+                    <tr>
+                        <th>Key</th>
+                        <th>Value</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Data rows will be dynamically added here -->
+                </tbody>
+            </table>
+            <button id="addDataItem">Add Data</button>
+        </div>
+    </div>
+
+    <div class="action-buttons">
+        <button type="button" id="addVersion">Add Version</button>
+        <button type="button" id="removeVersion" delete>Remove Version</button>
+    </div>
+
+    <script src="js/project.js"></script>
+</body>
+</html>

@@ -4,16 +4,21 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Adminstraition Dashboard</title>
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/index.css">
 </head>
 <body>
     <div class="main">
-        <button type="button" id="add-project">Add Project</button>
-        <button type="button" id="add-project">Manage</button>
+        <h1>Projects</h1>
+        <ul id="projectList">
+            <!-- projects will be dynamically added -->
+        </ul>
 
-        <ol id="updates-list"></ol>
+        <div class="action-buttons">
+            <button type="button" id="addProject">Add Project</button>
+            <button type="button" id="removeProject" delete>Remove</button>
+        </div>
     </div>
 
-    <script src="js/script.js"></script>
+    <script src="js/index.js"></script>
 </body>
 </html>
